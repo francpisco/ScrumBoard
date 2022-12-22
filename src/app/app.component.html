@@ -7,3 +7,15 @@
 <div *ngFor="let note of doingNotes">{{ note.story }} {{ note.color }} {{ note.boardCol }}</div>
 <h5>Done Notes:</h5>
 <div *ngFor="let note of doneNotes">{{ note.story }} {{ note.color }} {{ note.boardCol }}</div>
+<div>
+  
+    <label for="newNoteText">Enter Note Story: </label>
+  <textarea id="newNoteText" rows="3" #noteText></textarea>
+  <select [(ngModel)]="chosenColor">
+    <option *ngFor="let color of postColors" [ngValue]="color">{{ color.color }}</option>
+  </select>
+  <button (click)="addNote(noteText.value, chosenColor); noteText.value = ''">Add Note</button>
+  
+  
+  <p>You selected: {{ chosenColor }}</p>
+</div>

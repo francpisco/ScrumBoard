@@ -17,6 +17,14 @@ export class AppComponent {
     new PostItNote("Turn of iron", PostItColor.Yellow, BoardColumn.Todo)
   ]);
 
+  chosenColor: any;
+  postColors: PostColor[] = [
+    { id: 0, color: 'Yellow' },
+    { id: 1, color: 'Green' },
+    { id: 2, color: 'Pink' },
+    { id: 3, color: 'Blue' }
+  ]
+
   get allNotes(): readonly PostItNote[] {
     return this.boardNotes.allNotes;
   }
@@ -32,4 +40,15 @@ export class AppComponent {
   get doneNotes(): readonly PostItNote[] {
     return this.boardNotes.allNotes.filter(note => note.boardCol == 2);
   }
+
+  addNote(story: string, chosenColor: any) {
+    console.log(chosenColor.color)
+    
+    this.boardNotes.addNewNote(story, 0, 0);
+  }
+}
+
+interface PostColor {
+  id: number;
+  color: string;
 }
