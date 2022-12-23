@@ -1,16 +1,10 @@
 export class PostItNote {
 
-    constructor(public story: string, public color: PostItColor, public boardCol: BoardColumn) {
+    constructor(public story: string, public color: string, public boardCol: BoardColumn) {
 
     }
 }
 
-export enum PostItColor {
-    Yellow,
-    Pink,
-    Green,
-    Blue
-};
 
 export enum BoardColumn {
     Todo,

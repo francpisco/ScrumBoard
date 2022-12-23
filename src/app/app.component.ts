@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BoardColumn, PostItColor, PostItNote } from './postItNote';
+import { BoardColumn, PostItNote } from './postItNote';
 import { Board } from './board';
 
 
@@ -10,20 +10,15 @@ import { Board } from './board';
 })
 export class AppComponent {
   private boardNotes = new Board([
-    new PostItNote("Water the plants", PostItColor.Yellow, BoardColumn.Todo),
-    new PostItNote("Walk the dog", PostItColor.Green, BoardColumn.Done),
-    new PostItNote("Cut Flowers", PostItColor.Yellow, BoardColumn.Doing),
-    new PostItNote("Wash the floor", PostItColor.Yellow, BoardColumn.Todo),
-    new PostItNote("Turn of iron", PostItColor.Yellow, BoardColumn.Todo)
+    new PostItNote("Water the plants", 'Yellow', BoardColumn.Todo),
+    new PostItNote("Walk the dog", 'Green', BoardColumn.Done),
+    new PostItNote("Cut Flowers", 'Yellow', BoardColumn.Doing),
+    new PostItNote("Wash the floor", 'Yellow', BoardColumn.Todo),
+    new PostItNote("Turn of iron", 'Yellow', BoardColumn.Todo)
   ]);
 
   chosenColor: any;
-  postColors: PostColor[] = [
-    { id: 0, color: 'Yellow' },
-    { id: 1, color: 'Green' },
-    { id: 2, color: 'Pink' },
-    { id: 3, color: 'Blue' }
-  ]
+  postColors: string[] = ['Yellow', 'Green', 'Pink', 'Blue'];
 
   get allNotes(): readonly PostItNote[] {
     return this.boardNotes.allNotes;
@@ -41,14 +36,22 @@ export class AppComponent {
     return this.boardNotes.allNotes.filter(note => note.boardCol == 2);
   }
 
-  addNote(story: string, chosenColor: any) {
-    console.log(chosenColor.color)
+  addNote(story: string, chosenColor: string) {
+    console.log(chosenColor)
     
-    this.boardNotes.addNewNote(story, 0, 0);
+    this.boardNotes.addNewNote(story, chosenColor, 0);
+  }
+
+  moveToDo(note: PostItNote) {
+    note.boardCol = BoardColumn.Todo;
+  }
+
+  moveDoing(note: PostItNote) {
+    note.boardCol = BoardColumn.Doing;
+  }
+
+  moveDone(note: PostItNote) {
+    note.boardCol = BoardColumn.Done;
   }
 }
 
-interface PostColor {
-  id: number;
-  color: string;
-}

@@ -2,17 +2,27 @@
 <h5>All Notes:</h5>
 <div *ngFor="let note of allNotes">{{ note.story }} {{ note.color }} {{ note.boardCol }}</div>
 <h5>ToDo Notes:</h5>
-<div *ngFor="let note of todoNotes">{{ note.story }} {{ note.color }} {{ note.boardCol }}</div>
+<div *ngFor="let note of todoNotes">
+  {{ note.story }} {{ note.color }} {{ note.boardCol }}
+  <button (click)="moveDoing(note)">&gt;&gt;</button>
+</div>
 <h5>Doing Notes:</h5>
-<div *ngFor="let note of doingNotes">{{ note.story }} {{ note.color }} {{ note.boardCol }}</div>
+<div *ngFor="let note of doingNotes">
+  {{ note.story }} {{ note.color }} {{ note.boardCol }}
+  <button (click)="moveToDo(note)">&lt;&lt;</button>
+  <button (click)="moveDone(note)">&gt;&gt;</button>
+</div>
 <h5>Done Notes:</h5>
-<div *ngFor="let note of doneNotes">{{ note.story }} {{ note.color }} {{ note.boardCol }}</div>
+<div *ngFor="let note of doneNotes">
+  {{ note.story }} {{ note.color }} {{ note.boardCol }}
+  <button (click)="moveDoing(note)">&lt;&lt;</button>
+</div>
 <div>
   
-    <label for="newNoteText">Enter Note Story: </label>
+  <label for="newNoteText">Enter Note Story: </label>
   <textarea id="newNoteText" rows="3" #noteText></textarea>
   <select [(ngModel)]="chosenColor">
-    <option *ngFor="let color of postColors" [ngValue]="color">{{ color.color }}</option>
+    <option *ngFor="let color of postColors" [ngValue]="color">{{ color }}</option>
   </select>
   <button (click)="addNote(noteText.value, chosenColor); noteText.value = ''">Add Note</button>
   

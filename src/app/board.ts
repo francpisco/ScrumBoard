@@ -1,4 +1,4 @@
-import { PostItNote, PostItColor, BoardColumn } from "./postItNote";
+import { PostItNote, BoardColumn } from "./postItNote";
 
 export class Board {
     
@@ -10,7 +10,7 @@ export class Board {
         return this.notes;
     }
 
-    addNewNote(story: string, color: PostItColor, col: BoardColumn) {
+    addNewNote(story: string, color: string, col: BoardColumn) {
         this.notes.push(new PostItNote(story, color, col));
     }
 }
