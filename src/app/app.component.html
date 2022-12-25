@@ -2,18 +2,18 @@
 <h5>All Notes:</h5>
 <div *ngFor="let note of allNotes">{{ note.story }} {{ note.color }} {{ note.boardCol }}</div>
 <h5>ToDo Notes:</h5>
-<div *ngFor="let note of todoNotes">
+<div *ngFor="let note of todoNotes" [style.background-color]="note.color">
   {{ note.story }} {{ note.color }} {{ note.boardCol }}
   <button (click)="moveDoing(note)">&gt;&gt;</button>
 </div>
 <h5>Doing Notes:</h5>
-<div *ngFor="let note of doingNotes">
+<div *ngFor="let note of doingNotes" [style.background-color]="note.color">
   {{ note.story }} {{ note.color }} {{ note.boardCol }}
   <button (click)="moveToDo(note)">&lt;&lt;</button>
   <button (click)="moveDone(note)">&gt;&gt;</button>
 </div>
 <h5>Done Notes:</h5>
-<div *ngFor="let note of doneNotes">
+<div *ngFor="let note of doneNotes" [style.background-color]="note.color">
   {{ note.story }} {{ note.color }} {{ note.boardCol }}
   <button (click)="moveDoing(note)">&lt;&lt;</button>
 </div>
