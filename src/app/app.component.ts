@@ -18,6 +18,7 @@ export class AppComponent {
   ]);
 
   chosenColor: any;
+  magnifiedStory: string | undefined;
   postColors: string[] = ['Yellow', 'Green', 'Pink', 'Blue'];
 
   get allNotes(): readonly PostItNote[] {
