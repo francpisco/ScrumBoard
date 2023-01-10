@@ -1,22 +1,34 @@
 <h2>Template goes here.</h2>
 <h5>All Notes:</h5>
-<div *ngFor="let note of allNotes">{{ note.story }} {{ note.color }} {{ note.boardCol }}</div>
-<h5>ToDo Notes:</h5>
-<div *ngFor="let note of todoNotes" [style.background-color]="note.color" (mouseover)="magnifiedStory=note.story">
-  {{ note.story }} {{ note.boardCol }}
-  <button (click)="moveDoing(note)">&gt;&gt;</button>
-</div>
-<h5>Doing Notes:</h5>
-<div *ngFor="let note of doingNotes" [style.background-color]="note.color" (mouseover)="magnifiedStory=note.story">
-  {{ note.story }} {{ note.boardCol }}
-  <button (click)="moveToDo(note)">&lt;&lt;</button>
-  <button (click)="moveDone(note)">&gt;&gt;</button>
-</div>
-<h5>Done Notes:</h5>
-<div *ngFor="let note of doneNotes" [style.background-color]="note.color" (mouseover)="magnifiedStory=note.story">
-  {{ note.story }} {{ note.boardCol }}
-  <button (click)="moveDoing(note)">&lt;&lt;</button>
-</div>
+<div *ngFor="let note of model.getBoard()">{{ note.story }} {{ note.color }} {{ note.boardCol }}</div>
+<section class="row">
+  <div class="col">
+    <h5>ToDo Notes:</h5>
+    <div *ngFor="let note of model.getTodoNotes()" [style.background-color]="note.color" (mouseover)="magnifiedStory=note.story">
+      {{ note.story }} {{ note.boardCol }}
+      <button (click)="model.moveDoing(note)">&gt;&gt;</button>
+    </div>
+  </div>
+  
+  <div class="col">
+    <h5>Doing Notes:</h5>
+    <div *ngFor="let note of model.getDoingNotes()" [style.background-color]="note.color" (mouseover)="magnifiedStory=note.story">
+      {{ note.story }} {{ note.boardCol }}
+      <button (click)="model.moveToDo(note)">&lt;&lt;</button>
+      <button (click)="model.moveDone(note)">&gt;&gt;</button>
+    </div>
+  </div>
+  
+  <div class="col">
+    <h5>Done Notes:</h5>
+    <div *ngFor="let note of model.getDoneNotes()" [style.background-color]="note.color" (mouseover)="magnifiedStory=note.story">
+    {{ note.story }} {{ note.boardCol }}
+    <button (click)="model.moveDoing(note)">&lt;&lt;</button>
+  </div>
+  </div>
+  
+</section>
+
 <div>
   
   <label for="newNoteText">Enter Note Story: </label>
@@ -24,7 +36,7 @@
   <select [(ngModel)]="chosenColor">
     <option *ngFor="let color of postColors" [ngValue]="color">{{ color }}</option>
   </select>
-  <button (click)="addNote(noteText.value, chosenColor); noteText.value = ''">Add Note</button>
+  <button (click)="model.saveNote(noteText.value, chosenColor); noteText.value =''">Add Note</button>
   
   
   <p>You selected: {{ chosenColor }}</p>
